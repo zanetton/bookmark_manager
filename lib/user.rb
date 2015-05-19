@@ -8,7 +8,7 @@ class User
   attr_accessor :password_confirmation
 
   property :id, Serial
-  property :email, String
+  property :email, String, unique: true
   # this will store both the password and the salt
   # It's Text and not String because String holds
   # 50 characters by default
