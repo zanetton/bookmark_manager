@@ -13,3 +13,29 @@ DataMapper.finalize
 
 # However, the database tables don't exist yet. Let's tell datamapper to create them
 DataMapper.auto_upgrade!
+
+class BookmarkManager < Sinatra::Base
+  set :views, proc { File.join(root, '../views') }
+
+  get '/' do
+    @links = Link.all
+    erb :index
+  end
+
+  post '/links' do
+    url = params['url']
+    title = params['title']
+    tags = params['tags'].split(' ').map do |tag|
+    Tag.first_or_create(text: tag)
+    end
+
+    Link.create(url: url, title: title, tags: tags)
+    redirect to('/')
+    end
+
+  get '/tags/:text' do
+    tag = Tag.first(text: params[:text])
+    @links = tag ? tag.links : []
+    erb :index
+  end
+end
