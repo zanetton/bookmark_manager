@@ -18,4 +18,5 @@ group :development, :test do
   gem 'cucumber-sinatra'
   gem 'launchy'
   gem 'shotgun'
+  gem 'rack-flash3'
 end

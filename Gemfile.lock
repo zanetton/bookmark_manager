@@ -110,6 +110,8 @@ GEM
       ast (>= 1.1, < 3.0)
     powerpack (0.1.1)
     rack (1.6.1)
+    rack-flash3 (1.0.5)
+      rack
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -182,6 +184,7 @@ DEPENDENCIES
   database_cleaner
   dm-postgres-adapter
   launchy
+  rack-flash3
   rspec
   rubocop
   rubocop-rspec
