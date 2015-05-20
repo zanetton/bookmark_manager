@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'data_mapper'
 require 'rack-flash'
-require 'user'
+require './lib/user'
 require_relative 'data_mapper_setup'
 
 
@@ -11,6 +11,7 @@ class BookmarkManager < Sinatra::Base
   use Rack::MethodOverride
   set :session_secret, 'super secret'
   set :views, proc { File.join(root, 'views') }
+  set :partial_template_engine, :erb
 
   helpers do
     def current_user
@@ -78,7 +79,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   delete '/sessions' do
-    flash[:notice] = "Good bye!"
+    flash[:notice] = 'Good bye!'
     session[:user_id] = nil
     redirect '/'
   end
