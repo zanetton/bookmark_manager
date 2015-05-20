@@ -24,7 +24,7 @@ feature 'User signs up' do
   scenario 'with a password that does not match' do
     expect { sign_up('a@a.com', 'pass', 'wrong') }.to change(User, :count).by(0)
     expect(current_path).to eq('/users')
-    expect(page).to have_content('Sorry, there were the following problems with the form.')
+    expect(page).to have_content('Password does not match the confirmation')
   end
 
   scenario 'with an email that is already registered' do
